@@ -1,28 +1,46 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/_Layout.cshtml";
 }
+
 @section head{
-    <style>
-        h1 {
-            color: red;
-        }
-    </style>
+    <!-- Additional head content specific to this page -->
 }
 
-<h1>hi</h1>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
+<div id="mainContent" class="content container" style="margin-right: 0;">
+    <h1>خوش آمدید</h1>
+    <h3>داشبورد</h3>
+    <p>Your main content goes here. The offcanvas will push this content aside when opened.</p>
+    <div class="border-top my-3"></div>
 
-<button type="button" class="btn btn-link">Link</button>
+
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">تعداد اخبار</h5>
+                    <p class="card-text">
+                        @ViewBag.newsCount
+                    </p>
+                    <a href="#" class="btn btn-primary">view all</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">تعداد بازدید</h5>
+                    <p class="card-text">
+                        @ViewBag.views
+                    </p>
+                    <a href="#" class="btn btn-primary">analytics</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 @section script{
-    <script>
-        //alert(0);
-    </script>
+
 }
