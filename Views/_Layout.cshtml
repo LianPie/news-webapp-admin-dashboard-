@@ -1,73 +1,198 @@
 ﻿<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>_Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل مدیریت</title>
 
     <link href="~/assets/css/bootstrap.rtl.min.css" rel="stylesheet" />
+
+    <!-- include summernote css/js -->
+    <link href="~/assets/summernote/summernote.min.css" rel="stylesheet" />
+    <script src="~/assets/summernote/summernote.min.js"></script>
+
     @RenderSection("head", false)
     <style>
+        /* General Styles */
+        body {
+            background-color: #f8f9fa; /* Light background for the body */
+        }
 
         .offcanvas {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Larger shadow */
+            
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Darker shadow */
+            background-color: #007bff; /* Blue background for the offcanvas */
+            color: #ffffff; /* White text color */
         }
+
         .content {
             transition: margin-right .5s ease;
             padding: 20px;
         }
 
-        /* Remove border from accordion items */
+        /* Navbar Styles */
+        .navbar {
+            background-color: #007bff; /* Blue background */
+            color: #ffffff; /* White text color */
+        }
+
+        .navbar-brand {
+            color: #ffffff !important; /* Ensure brand text is white */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff; /* White text color for nav links */
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #d3d3d3; /* Light grey color on hover */
+            }
+
+        /* Accordion Styles */
         .accordion-button {
             border: none;
             box-shadow: none;
-            color: #1a1c1ded;
+            color: #ffffff; /* White text color */
+            background-color: #0056b3; /* Darker blue background */
         }
+
+            .accordion-button:not(.collapsed) {
+                background-color: #003d7a; /* Even darker blue when expanded */
+                color: #ffffff; /* White text color */
+            }
+
         .accordion-item {
             border: none;
             margin-bottom: 0.5rem;
-        }
-        .accordion-button:not(.collapsed) {
-            background-color: #b3ffb9; /* Background color when expanded */
-            color: #153116;
-            font: bold;
         }
 
         /* Style for submenu items */
         .submenu-item {
             display: block;
             padding: 0.5rem 1rem;
-            color: #1a1c1ded; /* Link color */
+            color: #14202b; /* White text color */
             text-decoration: none;
             border-radius: 0.25rem; /* Rounded corners */
         }
 
             .submenu-item:hover {
-                background-color: #e9ecef; /* Background color on hover */
-                color: #314222; /* Darker link color on hover */
+                background-color: #0056b3; /* Darker blue background on hover */
+                color: #ffffff; /* Ensure text remains white */
                 text-decoration: none;
+            }
+
+        .card {
+            border: none; /* Remove default border */
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Larger shadow */
+        }
+
+        .card-header {
+            background-color: #0056b3; /* Darker blue background for the header */
+            color: #ffffff; /* White text color */
+            border-bottom: 1px solid #004494; /* Slightly darker blue border */
+        }
+
+        .card-body {
+            background-color: #f0f8ff; /* Light blue background for the card body */
+            color: #333; /* Dark text color */
+        }
+
+        .card-title {
+            color: #007bff; /* Blue color for the card title */
+            font-weight: bold; /* Bold text */
+        }
+
+        .card-text {
+            color: #666; /* Darker gray text color for card text */
+        }
+
+        .card-footer {
+            background-color: #e9ecef; /* Light gray background for the footer */
+            border-top: 1px solid #dee2e6; /* Light border for separation */
+            text-align: right; /* Align text to the right */
+        }
+
+        .btn-card {
+            background-color: #007bff; /* Blue background for buttons inside cards */
+            color: #ffffff; /* White text color */
+            border: none; /* Remove border */
+        }
+
+            .btn-card:hover {
+                background-color: #0056b3; /* Darker blue on hover */
+            }
+
+        /* Table Container */
+        .table-container {
+            background-color: #ffffff; /* White background for table container */
+            padding: 1rem; /* Padding around table */
+            border-radius: 0.5rem; /* Rounded corners for container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow around container */
+        }
+        /* Table Styles */
+        .table {
+            border-collapse: collapse; /* Collapse table borders */
+            width: 100%; /* Full width of container */
+            margin-bottom: 1rem; /* Space below table */
+        }
+
+            .table th {
+                background-color: #007bff; /* Blue background for table header */
+                color: #ffffff; /* White text color */
+                border: 1px solid #0056b3; /* Darker blue border */
+                text-align: center; /* Centered text */
+            }
+            
+
+            .table td {
+                background-color: #ffffff; /* White background for table cells */
+                border: 1px solid #dee2e6; /* Light gray border for cells */
+                color: #212529; /* Dark text color */
+                text-align: center; /* Centered text */
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #f2f2f2; /* Light gray background for even rows */
+            }
+
+            .table tr:hover {
+                background-color: #e9ecef; /* Light background on hover */
+            }
+
+        .table-bordered {
+            border: 1px solid #dee2e6; /* Light gray border for table */
+        }
+
+            .table-bordered th {
+                border-bottom: 2px solid #0056b3; /* Darker blue border for header bottom */
+            }
+
+            .table-bordered td {
+                border-bottom: 1px solid #dee2e6; /* Light gray border for cells */
             }
     </style>
 </head>
 <body>
-    <nav class="navbar" style=" background-color: #b3ffb9">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <button class="btn btn-img" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" title="Toggle Offcanvas">
                 <img src="~/assets/icons/menuburger.png" alt="Toggle Offcanvas" />
             </button>
-            <span class="navbar-brand mb-0 h1">?What's new</span>
+
+            <span class="nav-link">@ViewBag.user</span>
+            <span class="navbar-brand mb-0 h1">What's New?</span>
         </div>
     </nav>
     @RenderBody()
 
-
-    <div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-start show" tabindex="-1" data-bs-scroll="true" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-
-
             <div class="accordion" id="accordionExample1">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
@@ -83,24 +208,6 @@
                 </div>
             </div>
 
-            <div class="accordion" id="accordionExample2">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#account" aria-expanded="true" aria-controls="account">
-                            حساب کاربری
-                        </button>
-                    </h2>
-                    <div id="account" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                        <div class="accordion-body">
-                            @Html.ActionLink("پروفایل", "Index", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
-                            @Html.ActionLink("ویرایش پروفایل", "EditAccount", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
-                            @Html.ActionLink("حذف حساب", "DeleteAccount", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="accordion" id="accordionExample3">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
@@ -114,14 +221,33 @@
                             @Html.ActionLink("خبر جدید", "Create", "News", new { area = "" }, new { @class = "nav-link submenu-item" })
                             @Html.ActionLink("دسته بندی", "Index", "Categories", new { area = "" }, new { @class = "nav-link submenu-item" })
                             @Html.ActionLink("برچسب", "Index", "Tags", new { area = "" }, new { @class = "nav-link submenu-item" })
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
 
+
+            <div class="accordion" id="accordionExample2">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#account" aria-expanded="true" aria-controls="account">
+                            حساب کاربری
+                        </button>
+                    </h2>
+                    <div id="account" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div class="accordion-body">
+                            @Html.ActionLink("پروفایل", "Index", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @Html.ActionLink("ویرایش پروفایل", "EditAccount", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @Html.ActionLink("حذف حساب", "DeleteAccount", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @if (ViewBag.userrole.Contains("userManagment"))
+                            {
+                                @Html.ActionLink("مدیریت کاربران", "UserMnagment", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="accordion" id="accordionExample4">
                 <div class="accordion-item">
@@ -132,6 +258,7 @@
                     </h2>
                     <div id="ticket" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
                         <div class="accordion-body">
+
                             @Html.ActionLink("تیکت جدید", "send", "Ticket", new { area = "" }, new { @class = "nav-link submenu-item" })
                             @Html.ActionLink("همه تیکت ها", "inex", "Ticket", new { area = "" }, new { @class = "nav-link submenu-item" })
                         </div>

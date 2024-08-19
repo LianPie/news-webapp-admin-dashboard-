@@ -1,0 +1,54 @@
+﻿@using WebApplication1.Models
+@model IEnumerable<ticketlist>
+
+
+@{
+    ViewBag.Title = "Index";
+
+    string status = "";
+    
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+           Sender username
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ticketTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @if (item.status == 1)
+                {
+                status = "awaiting response";
+                }
+                else if (item.status == 3)
+                {
+                status = "open";
+                }
+                @status
+            </td>
+            <td>
+                @Html.ActionLink("Respond", "Respond", new { id = item.ticketID })
+            </td>
+        </tr>
+    }
+
+</table>

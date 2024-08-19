@@ -1,0 +1,174 @@
+﻿@model newsWebapp.Models.NewsViewModel
+@{
+    ViewBag.Title = "افزودن خبر";
+    Layout = "~/Views/_Layout.cshtml";
+
+}
+<html>
+<head>
+    <style>
+        .content {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group {
+            max-height: 400px; /* Set a maximum height for scrollable area */
+            overflow-y: auto; /* Enable vertical scroll */
+            padding: 15px;
+            border: 1px solid #dee2e6; /* Bordered container */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #ffffff; /* White background */
+        }
+
+        .img-preview {
+            margin-top: 10px;
+            max-width: 100%; /* Ensure the preview fits within the container */
+            height: auto;
+            display: none; /* Initially hide the image preview */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mainContent" class="content container">
+        <h2>افزودن خبر جدید</h2>
+
+        @using (Html.BeginForm("Create", "news", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            عنوان
+                            <div>
+                                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            پیوند
+                            <div>
+                                @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            تصویر
+                            <div>
+                                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file", @class = "form-control", @id = "imageInput" } })
+                                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                                <img id="imagePreview" class="img-preview" display: none alt="Image Preview" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            توضیحات کوتاه
+                            <div>
+                                @Html.TextAreaFor(model => model.summary, new { @class = "form-control", @rows = 3 })
+                                @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            خلاصه خبر
+                            <div>
+                                <textarea id="summernote" name="Content" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" value="انتشار" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar for Category and Tag Selection -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h5>دسته‌ها و برچسب‌ها</h5>
+                        <div class="checkbox-group">
+                            <!-- You can manually list categories and tags here if needed -->
+                            @Html.Label("دسته بندی ها")
+                            <hr />
+                            @foreach (var category in ViewBag.categoryTitle)
+                            {
+                                <div>
+                                    <label>
+                                        <input type="checkbox" name="Cat" value="@category.title" /> @category.title
+                                    </label>
+                                </div>
+                            }
+                            <hr />
+
+                            @Html.Label("برچسب ها")
+                            <hr />
+                            @foreach (var tag in ViewBag.tagTitle)
+                            {
+                                <div>
+                                    <label>
+                                        <input type="checkbox" name="Tags" value="@tag.title" /> @tag.title
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <!-- Include jQuery and Summernote JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 300,  // Set editor height
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['misc', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+        });
+
+        // Image Preview Script
+        document.getElementById('imageInput').addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    const imgPreview = document.getElementById('imagePreview');
+                    imgPreview.src = event.target.result; // Set the source to the image preview
+                    imgPreview.style.display = 'block'; // Show the image
+                }
+
+                reader.readAsDataURL(file); // Convert the file to a data URL
+            }
+        });
+    </script>
+</body>
+</html>

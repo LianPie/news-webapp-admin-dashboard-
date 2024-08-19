@@ -1,0 +1,55 @@
+﻿@model IEnumerable<newsWebapp.Models.user>
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>مدیریت کاربران</title>
+</head>
+<body>
+    <div id="mainContent" class="content container" style="margin-right: 0;">
+
+
+        <p>
+            @Html.ActionLink("این قراره بعدا لینک بشه", "Create")
+        </p>
+        <div id="mainContent" class="content container table-responsive" style="margin-right: 0;">
+
+            <table class="table">
+                <tr>
+                    <th>
+                        نام کاربری
+                    </th>
+                    <th>
+                        نام اکانت
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.usename)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.displayname)
+                        </td>
+                        <td>
+                            @Html.ActionLink("ویرایش", "Edituser", new { id = item.ID }, new { @class = "btn btn-info" }) |
+                            @Html.ActionLink("حذف کاربر", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" } )
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+
+</body>
+</html>

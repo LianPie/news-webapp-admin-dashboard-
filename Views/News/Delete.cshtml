@@ -1,0 +1,64 @@
+﻿@model newsWebapp.Models.news
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>news</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            عنوان
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            تصویر
+        </dt>
+
+        <dd>
+            <img id="imagePreview" src="@Url.Content(Model.image)" class="img-preview" display: none alt="Image Preview" />
+        </dd>
+
+        <dt>
+            پیوند
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+        <dt>
+            خلاصه
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.summary)
+        </dd>
+
+        <dt>
+            نویسنده
+        </dt>
+
+        <dd>
+            @ViewBag.user
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

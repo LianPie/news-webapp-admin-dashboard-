@@ -1,0 +1,62 @@
+﻿@model newsWebapp.Models.user
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div id="mainContent" class="content container" style="margin-right: 0;">
+
+        <div class="card textc col-sm-9 mb-6 mb-sm-0">
+            <div class="card-header">
+                اطلاعات پروفایل
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        نام کاربری
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.usename)
+                    </dd>
+
+                    <dt>
+                        نام
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.displayname)
+                    </dd>
+
+                    <dt>
+                        سطح دسترسی
+                    </dt>
+
+                    <dd>
+                        @ViewBag.role
+                    </dd>
+
+                </dl>
+                <div class="card-footer text-body-secondary">
+                    @Html.ActionLink("ویرایش اطلاعات کاربری", "EditAccount", null, new { @class = "btn btn-info" })
+                    @Html.ActionLink("خروج", "Logout", null, new { @class = "btn btn-danger" })
+
+                </div>
+            </div>
+
+
+            <p>
+            </p>
+
+        </div>
+    </div>
+
+</body>
+</html>

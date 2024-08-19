@@ -1,0 +1,46 @@
+﻿@model newsWebapp.Models.user
+
+@{
+    ViewBag.Title = "DeleteAccount";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div id="mainContent" class="content container" style="margin-right: 0;">
+    <div class="card textc col-sm-9 mb-6 mb-sm-0">
+        <div class="card-header">
+            حذف حساب
+            <h5>مطمئنی؟ :(</h5>
+        </div>
+        <div class="card-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    نام کاربری
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.usename)
+                </dd>
+
+                <dt>
+                    نام
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.displayname)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="card-footer text-body-secondary">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="حذف" class="btn btn-danger" />
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>

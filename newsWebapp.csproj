@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -43,16 +44,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.17.1.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.0.17.1\lib\net472\AngleSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="AngleSharp.Css, Version=0.17.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.Css.0.17.0\lib\net472\AngleSharp.Css.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizer, Version=8.0.0.0, Culture=neutral, PublicKeyToken=61c49a1a9e79cc28, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlSanitizer.8.1.870\lib\net461\HtmlSanitizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.6.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -133,7 +162,170 @@
     <Content Include="assets\js\bootstrap.esm.min.js" />
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ar-AR.js" />
+    <Content Include="assets\summernote\lang\summernote-ar-AR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ar-AR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-az-AZ.js" />
+    <Content Include="assets\summernote\lang\summernote-az-AZ.min.js" />
+    <Content Include="assets\summernote\lang\summernote-az-AZ.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-bg-BG.js" />
+    <Content Include="assets\summernote\lang\summernote-bg-BG.min.js" />
+    <Content Include="assets\summernote\lang\summernote-bg-BG.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-ca-ES.js" />
+    <Content Include="assets\summernote\lang\summernote-ca-ES.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ca-ES.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-cs-CZ.js" />
+    <Content Include="assets\summernote\lang\summernote-cs-CZ.min.js" />
+    <Content Include="assets\summernote\lang\summernote-cs-CZ.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-da-DK.js" />
+    <Content Include="assets\summernote\lang\summernote-da-DK.min.js" />
+    <Content Include="assets\summernote\lang\summernote-da-DK.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-de-DE.js" />
+    <Content Include="assets\summernote\lang\summernote-de-DE.min.js" />
+    <Content Include="assets\summernote\lang\summernote-de-DE.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-el-GR.js" />
+    <Content Include="assets\summernote\lang\summernote-el-GR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-el-GR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-es-ES.js" />
+    <Content Include="assets\summernote\lang\summernote-es-ES.min.js" />
+    <Content Include="assets\summernote\lang\summernote-es-ES.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-es-EU.js" />
+    <Content Include="assets\summernote\lang\summernote-es-EU.min.js" />
+    <Content Include="assets\summernote\lang\summernote-es-EU.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-fa-IR.js" />
+    <Content Include="assets\summernote\lang\summernote-fa-IR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-fa-IR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-fi-FI.js" />
+    <Content Include="assets\summernote\lang\summernote-fi-FI.min.js" />
+    <Content Include="assets\summernote\lang\summernote-fi-FI.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-fr-FR.js" />
+    <Content Include="assets\summernote\lang\summernote-fr-FR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-fr-FR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-gl-ES.js" />
+    <Content Include="assets\summernote\lang\summernote-gl-ES.min.js" />
+    <Content Include="assets\summernote\lang\summernote-gl-ES.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-he-IL.js" />
+    <Content Include="assets\summernote\lang\summernote-he-IL.min.js" />
+    <Content Include="assets\summernote\lang\summernote-he-IL.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-hr-HR.js" />
+    <Content Include="assets\summernote\lang\summernote-hr-HR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-hr-HR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-hu-HU.js" />
+    <Content Include="assets\summernote\lang\summernote-hu-HU.min.js" />
+    <Content Include="assets\summernote\lang\summernote-hu-HU.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-id-ID.js" />
+    <Content Include="assets\summernote\lang\summernote-id-ID.min.js" />
+    <Content Include="assets\summernote\lang\summernote-id-ID.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-it-IT.js" />
+    <Content Include="assets\summernote\lang\summernote-it-IT.min.js" />
+    <Content Include="assets\summernote\lang\summernote-it-IT.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-ja-JP.js" />
+    <Content Include="assets\summernote\lang\summernote-ja-JP.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ja-JP.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-ko-KR.js" />
+    <Content Include="assets\summernote\lang\summernote-ko-KR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ko-KR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-lt-LT.js" />
+    <Content Include="assets\summernote\lang\summernote-lt-LT.min.js" />
+    <Content Include="assets\summernote\lang\summernote-lt-LT.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-lt-LV.js" />
+    <Content Include="assets\summernote\lang\summernote-lt-LV.min.js" />
+    <Content Include="assets\summernote\lang\summernote-lt-LV.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-mn-MN.js" />
+    <Content Include="assets\summernote\lang\summernote-mn-MN.min.js" />
+    <Content Include="assets\summernote\lang\summernote-mn-MN.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-nb-NO.js" />
+    <Content Include="assets\summernote\lang\summernote-nb-NO.min.js" />
+    <Content Include="assets\summernote\lang\summernote-nb-NO.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-nl-NL.js" />
+    <Content Include="assets\summernote\lang\summernote-nl-NL.min.js" />
+    <Content Include="assets\summernote\lang\summernote-nl-NL.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-pl-PL.js" />
+    <Content Include="assets\summernote\lang\summernote-pl-PL.min.js" />
+    <Content Include="assets\summernote\lang\summernote-pl-PL.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-pt-BR.js" />
+    <Content Include="assets\summernote\lang\summernote-pt-BR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-pt-BR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-pt-PT.js" />
+    <Content Include="assets\summernote\lang\summernote-pt-PT.min.js" />
+    <Content Include="assets\summernote\lang\summernote-pt-PT.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-ro-RO.js" />
+    <Content Include="assets\summernote\lang\summernote-ro-RO.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ro-RO.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-ru-RU.js" />
+    <Content Include="assets\summernote\lang\summernote-ru-RU.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ru-RU.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-sk-SK.js" />
+    <Content Include="assets\summernote\lang\summernote-sk-SK.min.js" />
+    <Content Include="assets\summernote\lang\summernote-sk-SK.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-sl-SI.js" />
+    <Content Include="assets\summernote\lang\summernote-sl-SI.min.js" />
+    <Content Include="assets\summernote\lang\summernote-sl-SI.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="assets\summernote\lang\summernote-sr-RS-Latin.min.js" />
+    <Content Include="assets\summernote\lang\summernote-sr-RS-Latin.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-sr-RS.js" />
+    <Content Include="assets\summernote\lang\summernote-sr-RS.min.js" />
+    <Content Include="assets\summernote\lang\summernote-sr-RS.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-sv-SE.js" />
+    <Content Include="assets\summernote\lang\summernote-sv-SE.min.js" />
+    <Content Include="assets\summernote\lang\summernote-sv-SE.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-ta-IN.js" />
+    <Content Include="assets\summernote\lang\summernote-ta-IN.min.js" />
+    <Content Include="assets\summernote\lang\summernote-ta-IN.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-th-TH.js" />
+    <Content Include="assets\summernote\lang\summernote-th-TH.min.js" />
+    <Content Include="assets\summernote\lang\summernote-th-TH.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-tr-TR.js" />
+    <Content Include="assets\summernote\lang\summernote-tr-TR.min.js" />
+    <Content Include="assets\summernote\lang\summernote-tr-TR.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-uk-UA.js" />
+    <Content Include="assets\summernote\lang\summernote-uk-UA.min.js" />
+    <Content Include="assets\summernote\lang\summernote-uk-UA.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-uz-UZ.js" />
+    <Content Include="assets\summernote\lang\summernote-uz-UZ.min.js" />
+    <Content Include="assets\summernote\lang\summernote-uz-UZ.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-vi-VN.js" />
+    <Content Include="assets\summernote\lang\summernote-vi-VN.min.js" />
+    <Content Include="assets\summernote\lang\summernote-vi-VN.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="assets\summernote\lang\summernote-zh-CN.min.js" />
+    <Content Include="assets\summernote\lang\summernote-zh-CN.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\lang\summernote-zh-TW.js" />
+    <Content Include="assets\summernote\lang\summernote-zh-TW.min.js" />
+    <Content Include="assets\summernote\lang\summernote-zh-TW.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="assets\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="assets\summernote\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="assets\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="assets\summernote\summernote-bs4.css" />
+    <Content Include="assets\summernote\summernote-bs4.js" />
+    <Content Include="assets\summernote\summernote-bs4.min.css" />
+    <Content Include="assets\summernote\summernote-bs4.min.js" />
+    <Content Include="assets\summernote\summernote-bs4.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\summernote-lite.css" />
+    <Content Include="assets\summernote\summernote-lite.js" />
+    <Content Include="assets\summernote\summernote-lite.min.css" />
+    <Content Include="assets\summernote\summernote-lite.min.js" />
+    <Content Include="assets\summernote\summernote-lite.min.js.LICENSE.txt" />
+    <Content Include="assets\summernote\summernote.css" />
+    <Content Include="assets\summernote\summernote.js" />
+    <Content Include="assets\summernote\summernote.min.css" />
+    <Content Include="assets\summernote\summernote.min.js" />
+    <Content Include="assets\summernote\summernote.min.js.LICENSE.txt" />
     <Content Include="Global.asax" />
+    <Content Include="Media\news\32wiF8mzgi.jpg" />
+    <Content Include="Media\news\5RCYg4F954.jpg" />
+    <Content Include="Media\news\AnaSQwnOHg.jpg" />
+    <Content Include="Media\news\DhunrFmH5e.jpg" />
+    <Content Include="Media\news\i08QfDIQ70.jpg" />
+    <Content Include="Media\news\kgeN7kkWJ0.jpg" />
+    <Content Include="Media\news\kmcZj0sRbt.jpg" />
+    <Content Include="Media\news\orYf1iXWSH.jpg" />
+    <Content Include="Media\news\rQISg2NRaA.jpg" />
+    <Content Include="Media\news\U.jpg" />
+    <Content Include="Media\news\YoUypscYRW.jpg" />
+    <Content Include="Media\news\zF9LapiTFm.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -149,7 +341,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +368,8 @@
     <Compile Include="Models\news.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewsViewModel.cs" />
+    <Compile Include="Models\newsModel.cs" />
     <Compile Include="Models\response.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -222,9 +418,51 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\summernote\font\summernote.eot" />
+    <Content Include="assets\summernote\font\summernote.ttf" />
+    <Content Include="assets\summernote\font\summernote.woff" />
+    <Content Include="assets\summernote\font\summernote.woff2" />
+    <Content Include="assets\summernote\summernote-bs4.js.map" />
+    <Content Include="assets\summernote\summernote-bs4.min.js.map" />
+    <Content Include="assets\summernote\summernote-lite.js.map" />
+    <Content Include="assets\summernote\summernote-lite.min.js.map" />
+    <Content Include="assets\summernote\summernote.js.map" />
+    <Content Include="assets\summernote\summernote.min.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_Layout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\EditAccount.cshtml" />
+    <Content Include="Views\Account\UserMnagment.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\DeleteAccount.cshtml" />
+    <Content Include="Views\Account\Edituser.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\categories\Create.cshtml" />
+    <Content Include="Views\categories\Delete.cshtml" />
+    <Content Include="Views\categories\Details.cshtml" />
+    <Content Include="Views\categories\Edit.cshtml" />
+    <Content Include="Views\categories\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\responses\Create.cshtml" />
+    <Content Include="Views\responses\Delete.cshtml" />
+    <Content Include="Views\responses\Details.cshtml" />
+    <Content Include="Views\responses\Index.cshtml" />
+    <Content Include="Views\responses\Respond.cshtml" />
+    <Content Include="Views\responses\test.cshtml" />
+    <Content Include="Views\tags\Create.cshtml" />
+    <Content Include="Views\tags\Delete.cshtml" />
+    <Content Include="Views\tags\Details.cshtml" />
+    <Content Include="Views\tags\Edit.cshtml" />
+    <Content Include="Views\tags\Index.cshtml" />
+    <Content Include="Views\tickets\Create.cshtml" />
+    <Content Include="Views\tickets\Delete.cshtml" />
+    <Content Include="Views\tickets\Details.cshtml" />
+    <Content Include="Views\tickets\Edit.cshtml" />
+    <Content Include="Views\tickets\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -268,7 +506,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
