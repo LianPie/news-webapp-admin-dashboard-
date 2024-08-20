@@ -28,6 +28,8 @@
                     <th>
                         نام اکانت
                     </th>
+                    <th>مدیریت</th>
+
                 </tr>
 
                 @foreach (var item in Model)
@@ -40,7 +42,7 @@
                             @Html.DisplayFor(modelItem => item.displayname)
                         </td>
                         <td>
-                            @Html.ActionLink("ویرایش", "Edituser", new { id = item.ID }, new { @class = "btn btn-info" }) |
+                            @Html.ActionLink("ویرایش", "Edituser", new { id = item.ID }, new { @class = "btn btn-info" }) 
                             @Html.ActionLink("حذف کاربر", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" } )
                         </td>
                     </tr>

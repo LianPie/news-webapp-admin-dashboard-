@@ -1,64 +1,108 @@
 ﻿@model newsWebapp.Models.news
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "حذف خبر";
+    Layout = "~/Views/_Layout.cshtml";
+
 }
+<html>
+<head>
+    <style>
 
-<h2>Delete</h2>
+        .img-preview {
+            margin-top: 10px;
+            max-width: 100%; /* Ensure the preview fits within the container */
+            max-height: auto
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContent" class="content container">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>news</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            عنوان
-        </dt>
+        <h2>حذف</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
+        <h3>مطمئنی؟</h3>
 
-        <dt>
-            تصویر
-        </dt>
+        <div class="row">
+            <div class="col-md-8">
 
-        <dd>
-            <img id="imagePreview" src="@Url.Content(Model.image)" class="img-preview" display: none alt="Image Preview" />
-        </dd>
+                <dl class="dl-horizontal">
+                    <dt>
+                        عنوان
+                    </dt>
 
-        <dt>
-            پیوند
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.title)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.link)
-        </dd>
 
-        <dt>
-            خلاصه
-        </dt>
+                    <dt>
+                        پیوند
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.summary)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.link)
+                    </dd>
 
-        <dt>
-            نویسنده
-        </dt>
+                    <dt>
+                        خلاصه
+                    </dt>
 
-        <dd>
-            @ViewBag.user
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.summary)
+                    </dd>
 
-    </dl>
+                    <dt>
+                        نویسنده
+                    </dt>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                    <dd>
+                        @ViewBag.user
+                    </dd>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                </dl>
+            </div>
+
+
+
+            <!-- Sidebar for Category and Tag Selection -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="card">
+                        <div class="card-header">
+                            تایید
+                        </div>
+                        <div class="card-body">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="حذف" class="btn btn-danger" /> 
+                                    @Html.ActionLink("بازگشت", "Index", null, new {@class = "btn btn-info"})
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+                    <br />
+                    <div class="card">
+                        <div class="card-header">
+                            پیش نمایش تصویر
+                        </div>
+                        <div class="card-body">
+                            <img id="imagePreview" src="@Url.Content(Model.image)" class="img-preview" display: none alt="Image Preview" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    }
-</div>
+        
+
+    </div>
+
+</body>
+</html>
+

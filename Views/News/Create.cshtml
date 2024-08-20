@@ -33,6 +33,11 @@
             height: auto;
             display: none; /* Initially hide the image preview */
         }
+
+
+        .card-body {
+            padding: 20px; /* Adjust padding as needed */
+        }
     </style>
 </head>
 <body>
@@ -71,7 +76,6 @@
                             <div>
                                 @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file", @class = "form-control", @id = "imageInput" } })
                                 @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
-                                <img id="imagePreview" class="img-preview" display: none alt="Image Preview" />
                             </div>
                         </div>
 
@@ -98,40 +102,68 @@
                     </div>
                 </div>
 
+
                 <!-- Sidebar for Category and Tag Selection -->
                 <div class="col-md-4">
                     <div class="form-group">
-                        <h5>دسته‌ها و برچسب‌ها</h5>
-                        <div class="checkbox-group">
-                            <!-- You can manually list categories and tags here if needed -->
-                            @Html.Label("دسته بندی ها")
-                            <hr />
-                            @foreach (var category in ViewBag.categoryTitle)
-                            {
+                        <div class="card">
+                            <div class="card-header">
+                                انتشار
+                            </div>
+                            <div class="card-body">
                                 <div>
-                                    <label>
-                                        <input type="checkbox" name="Cat" value="@category.title" /> @category.title
-                                    </label>
+                                    <input type="submit" value="انتشار" class="btn btn-success" />
                                 </div>
-                            }
-                            <hr />
+                            </div>
+                        </div>
 
-                            @Html.Label("برچسب ها")
-                            <hr />
-                            @foreach (var tag in ViewBag.tagTitle)
-                            {
+                        <br />
+                        <div class="card">
+                            <div class="card-header">
+                                دسته‌ها و برچسب‌ها
+                            </div>
+                            <div class="card-body">
                                 <div>
-                                    <label>
-                                        <input type="checkbox" name="Tags" value="@tag.title" /> @tag.title
-                                    </label>
+                                    <!-- You can manually list categories and tags here if needed -->
+                                    @Html.Label("دسته بندی ها")
+                                    <hr />
+                                    @foreach (var category in ViewBag.categoryTitle)
+                                    {
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" name="Cat" value="@category.title" /> @category.title
+                                            </label>
+                                        </div>
+                                    }
+                                    <hr />
+
+                                    @Html.Label("برچسب ها")
+                                    <hr />
+                                    @foreach (var tag in ViewBag.tagTitle)
+                                    {
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" name="Tags" value="@tag.title" /> @tag.title
+                                            </label>
+                                        </div>
+                                    }
                                 </div>
-                            }
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="card">
+                            <div class="card-header">
+                                پیش نمایش تصویر
+                            </div>
+                            <div class="card-body">
+                                <img id="imagePreview" class="img-preview" display: none alt="Image Preview" />
+                            </div>
+                        </div>
                         </div>
                     </div>
-                </div>
             </div>
         }
-
     </div>
 
     <!-- Include jQuery and Summernote JS -->

@@ -8,18 +8,22 @@
     var Roles = Model.role.Split(',');
 }
 <div id="mainContent" class="content container" style="margin-right: 0;">
-
-
     <div class="card textc col-sm-9 mb-6 mb-sm-0">
         <div class="card-header">
-            اطلاعات کاربر
+            <h5>
+                اطلاعات کاربر   
+            </h5>
         </div>
+
         <div class="card-body">
+
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
+
+
                     <h4>user</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -52,21 +56,22 @@
                             @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br />
-                    <div class="card-footer text-body-secondary">
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="ذخیره" class="btn btn-success" />
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
+            }
 
-</div>
-
-    }
-
+        </div>
 
 
+        <div class="card-footer text-body-secondary">
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="ذخیره" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

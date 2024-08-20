@@ -1,45 +1,44 @@
-﻿@model IEnumerable<WebApplication1.Models.category>
+﻿@model IEnumerable<newsWebapp.Models.category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "برچسب ها";
+    Layout = "~/Views/_Layout.cshtml";
 }
+<div id="mainContent" class="content container" style="margin-right: 0;">
 
-<h2>Index</h2>
+    <h2>برچسب ها</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("افزودن برچسب", "Create", null, new { @class = "btn btn-info" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                عنوان
+            </th>
+            <th>مدیریت</th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.ActionLink("اخبار", "Details", new { id = item.ID }, new { @class = "btn btn-info" })
+                    @if (ViewBag.role > 0)
+                    {
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.ID }, new { @class = "btn btn-info" })
+                        <span> </span>
+                        @Html.ActionLink("حذف", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
 
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @if (ViewBag.role > 0)
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                <span>|</span>
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    }
+                </td>
+            </tr>
+        }
 
-            }
-        </td>
-    </tr>
-}
+    </table>
 
-</table>
+</div>
+

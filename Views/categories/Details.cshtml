@@ -1,48 +1,51 @@
-﻿@model IEnumerable<WebApplication1.Models.news>
+﻿@model IEnumerable<newsWebapp.Models.news>
 
 @{
     ViewBag.Title = @ViewBag.title;
+    Layout = "~/Views/_Layout.cshtml";
 }
-
-<h2>@ViewBag.title</h2>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tag)
-        </th>
-        <th>
-            category
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div id="mainContent" class="content container" style="margin-right: 0;">
+    <h2>@ViewBag.title</h2>
+    <hr />
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cat)
-            </td>
-            <td>
-                @Html.ActionLink("Read", "../news/Details", new { id = item.ID })|
-                @if (ViewBag.role > 0 || ViewBag.uid == item.userID)
-                {
-
-                    @Html.ActionLink("Edit", "../news/Edit", new { id = item.ID })
-                    <span>|</span>
-                    @Html.ActionLink("Delete", "../news/Delete", new { id = item.ID })
-                }
-            </td>
+            <th>
+                عنوان
+            </th>
+            <th>
+                دسته بندی
+            </th>
+            <th>
+                برچسب
+            </th>
+            <th>مدیریت</th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tag)
+                </td>
+                <td>
+                    @if (ViewBag.role > 0 || ViewBag.uid == item.userID)
+                    {
+
+                        @Html.ActionLink("Edit", "../news/Edit", new { id = item.ID }, new { @class = "btn btn-info" })
+                        <span> </span>
+                        @Html.ActionLink("Delete", "../news/Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

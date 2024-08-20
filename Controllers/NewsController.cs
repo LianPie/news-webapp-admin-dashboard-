@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 using WebApplication1.Models;
 using Ganss.Xss;
 
-namespace WebApplication1.Controllers
+namespace newsWebapp.Controllers
 {
     public class NewsController : Controller
     {
@@ -162,7 +162,7 @@ namespace WebApplication1.Controllers
             }
             if (ModelState.IsValid)
             {
-                if (Request.Files.Count > 0)
+                if (Request.Files[0].ContentLength > 0)
                 {
                     
                     setLists();
@@ -330,40 +330,43 @@ namespace WebApplication1.Controllers
                             news.cat += c;
                     }
                 }
-
-                var image = Request.Files[0];
-                if (image.ContentLength > 1024 * 1024)
+                if (Request.Files[0].ContentLength > 0)
                 {
-                    //check if fields are empty
-                    ModelState.AddModelError("imageFile", "File size cannot exceed 1MB.");
-                    return RedirectToAction("Index");
-                }
 
-                // Check file extension
-                string fileExtension = Path.GetExtension(image.FileName).ToLower();
-                //if (fileExtension != ".jpg" || fileExtension != ".jpeg" || fileExtension != ".png")
-                if (!new[] { ".jpg", ".jpeg", ".png" }.Contains(fileExtension))
-                {
-                    ModelState.AddModelError("image", "Only JPG, JPEG, and PNG files are allowed.");
-                    news.image = "";
-                    return View();
-
-                }
-                else
-                {
-                    int length = 10; // Desired length of the random string
-                    string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                    char[] chars = new char[length];
-                    Random rand = new Random();
-                    string imgname = "";
-                    for (int i = 0; i < length; i++)
+                    var image = Request.Files[0];
+                    if (image.ContentLength > 1024 * 1024)
                     {
-                        chars[i] = allowedChars[rand.Next(0, allowedChars.Length)];
-                        imgname += "" + chars[i];
+                        //check if fields are empty
+                        ModelState.AddModelError("imageFile", "File size cannot exceed 1MB.");
+                        return RedirectToAction("Index");
                     }
-                    var path = $"~/Media/news/" + imgname + fileExtension;
-                    image.SaveAs(Server.MapPath(path));
-                    news.image = path;
+
+                    // Check file extension
+                    string fileExtension = Path.GetExtension(image.FileName).ToLower();
+                    //if (fileExtension != ".jpg" || fileExtension != ".jpeg" || fileExtension != ".png")
+                    if (!new[] { ".jpg", ".jpeg", ".png" }.Contains(fileExtension))
+                    {
+                        ModelState.AddModelError("image", "Only JPG, JPEG, and PNG files are allowed.");
+                        news.image = "";
+                        return View();
+
+                    }
+                    else
+                    {
+                        int length = 10; // Desired length of the random string
+                        string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                        char[] chars = new char[length];
+                        Random rand = new Random();
+                        string imgname = "";
+                        for (int i = 0; i < length; i++)
+                        {
+                            chars[i] = allowedChars[rand.Next(0, allowedChars.Length)];
+                            imgname += "" + chars[i];
+                        }
+                        var path = $"~/Media/news/" + imgname + fileExtension;
+                        image.SaveAs(Server.MapPath(path));
+                        news.image = path;
+                    }
                 }
 
                 //db op
@@ -388,24 +391,27 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            string userrole = Convert.ToString(Session["Userrole"]);
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             news news = db.news.Find(id);
-            ViewBag.user = db.users.Find(Convert.ToInt32(Session["Userid"]));
 
             if (news == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    else if (news.userID == Convert.ToInt32(Session["Userid"]) || Convert.ToInt32(Session["Userrole"]) > 0)
-                    {
-                    return View(news);
-                    }
-                    else
-                        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
-                
+            {
+                return HttpNotFound();
+            }
+            else if (news.userID == Convert.ToInt32(Session["Userid"]) || userrole.Contains("newsManagement"))
+            {
+                var user = db.users.Find(news.userID);
+                ViewBag.user =  user != null ? user.displayname : "deleted user";
+                return View(news);
+            }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
         }
 
         // POST: news/Delete/5

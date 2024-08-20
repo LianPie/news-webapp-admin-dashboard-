@@ -44,67 +44,79 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form">
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            عنوان
-                            <div>
-                                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                <div class="form-group">
+                    عنوان
+                    <div>
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            پیوند
-                            <div>
-                                @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                <div class="form-group">
+                    پیوند
+                    <div>
+                        @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            تصویر
-                            <div>
-                                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @type = "file", @class = "form-control", @id = "imageInput" } })
-                                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
-                                <img id="imagePreview" src="@Url.Content(Model.image)" class="img-preview" display: none alt="Image Preview" />
-                            </div>
-                        </div>
+                <div class="form-group">
+                    تصویر
+                    <div>
+                        <input class="form-control text-box single-line" id="imageInput" name="image" type="file">
+                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            توضیحات کوتاه
-                            <div>
-                                @Html.TextAreaFor(model => model.summary, new { @class = "form-control", @rows = 3 })
-                                @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                <div class="form-group">
+                    توضیحات کوتاه
+                    <div>
+                        @Html.TextAreaFor(model => model.summary, new { @class = "form-control", @rows = 3 })
+                        @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            خلاصه خبر
-                            <div>
+                <div class="form-group">
+                    توضیجات خبر
+                    <div>
 
-                                @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @id= "summernote" })
-                                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @id = "summernote" })
+                        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <div>
-                                <input type="submit" value="انتشار" class="btn btn-success" />
-                            </div>
+            </div>
+        </div>
+
+
+
+        <!-- Sidebar for Category and Tag Selection -->
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="card">
+                    <div class="card-header">
+                        انتشار
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <input type="submit" value="انتشار" class="btn btn-success" />
                         </div>
                     </div>
                 </div>
 
-                <!-- Sidebar for Category and Tag Selection -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <h5>دسته‌ها و برچسب‌ها</h5>
-                        <div class="checkbox-group">
+                <br />
+                <div class="card">
+                    <div class="card-header">
+                        دسته‌ها و برچسب‌ها
+                    </div>
+                    <div class="card-body">
+                        <div>
                             <!-- You can manually list categories and tags here if needed -->
                             @Html.Label("دسته بندی ها")
                             <hr />
@@ -124,14 +136,26 @@
                             {
                                 <div>
                                     <label>
-                                        <input type="checkbox" name="Tags" value="@tag.title" @(Model.tag.Contains(tag.title) ? "checked" : "")/> @tag.title
+                                        <input type="checkbox" name="Tags" value="@tag.title" @(Model.tag.Contains(tag.title) ? "checked" : "") /> @tag.title
                                     </label>
                                 </div>
                             }
                         </div>
                     </div>
                 </div>
+
+                <br />
+                <div class="card">
+                    <div class="card-header">
+                        پیش نمایش تصویر
+                    </div>
+                    <div class="card-body">
+                        <img id="imagePreview"src="@Url.Content(Model.image)" class="img-preview" display: none alt="Image Preview" />
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
         }
 
     </div>
