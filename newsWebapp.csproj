@@ -345,7 +345,6 @@
     <Compile Include="Controllers\categoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\responsesController.cs" />
     <Compile Include="Controllers\tagsController.cs" />
     <Compile Include="Controllers\ticketsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -383,6 +382,7 @@
     <Compile Include="Models\ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ticketlist.cs" />
     <Compile Include="Models\user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -446,12 +446,7 @@
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
-    <Content Include="Views\responses\Create.cshtml" />
-    <Content Include="Views\responses\Delete.cshtml" />
-    <Content Include="Views\responses\Details.cshtml" />
-    <Content Include="Views\responses\Index.cshtml" />
-    <Content Include="Views\responses\Respond.cshtml" />
-    <Content Include="Views\responses\test.cshtml" />
+    <Content Include="Views\tickets\Index.cshtml" />
     <Content Include="Views\tags\Create.cshtml" />
     <Content Include="Views\tags\Delete.cshtml" />
     <Content Include="Views\tags\Details.cshtml" />
@@ -459,14 +454,13 @@
     <Content Include="Views\tags\Index.cshtml" />
     <Content Include="Views\tickets\Create.cshtml" />
     <Content Include="Views\tickets\Delete.cshtml" />
-    <Content Include="Views\tickets\Details.cshtml" />
-    <Content Include="Views\tickets\Edit.cshtml" />
-    <Content Include="Views\tickets\Index.cshtml" />
+    <Content Include="Views\tickets\UserResponse.cshtml" />
     <Content Include="Views\categories\Create.cshtml" />
     <Content Include="Views\categories\Delete.cshtml" />
     <Content Include="Views\categories\Details.cshtml" />
     <Content Include="Views\categories\Edit.cshtml" />
     <Content Include="Views\categories\Index.cshtml" />
+    <Content Include="Views\tickets\Respond.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

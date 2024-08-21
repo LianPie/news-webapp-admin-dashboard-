@@ -1,0 +1,131 @@
+﻿@model newsWebapp.Models.ticket
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+    var ticket = Model.content.Split('/');
+    var response = ViewBag.response.content.Split(('/'));
+
+
+}
+<head>
+    <style>
+        .form-control,
+        .btn {
+            border-radius: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+        .response-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .response-item {
+            margin-bottom: 1rem;
+            padding: 10px;
+            background-color: #6c757d;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .ticket-item {
+            margin-bottom: 1rem;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .response-item:last-child {
+                margin-bottom: 0;
+            }
+
+        .response-meta {
+            font-size: 0.875rem;
+            color: #dee2e6;
+        }
+        .ticket-meta {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+            .response-meta .author {
+                font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <div id="mainContent" class="content container" style="margin-right: 0;">
+
+
+        <!-- Ticket Details and Responses -->
+        <div class="card ticket-card">
+            <div class="card-header">
+                <h5>@Model.title</h5>
+            </div>
+            <div class="card-body">
+                <div class="response-list">
+                    <!-- Example Response -->
+                    @for (int i = 0; i < ticket.Length; i++)
+                    {
+                        <div class="ticket-item">
+                            <div class="ticket-meta">
+                                <span class="author">@ViewBag.sender</span>
+                            </div>
+                            <p>
+                                @ticket[i]
+                            </p>
+                        </div>
+                        if (i >= 0 && i < response.Length)
+                        {
+                            <div class="response-item" dir="ltr">
+                                <div class="response-meta">
+                                    <span class="admin">@ViewBag.admin</span>
+                                </div>
+                                <p style=" color: #dcdcdc;">
+                                    @response[i]
+                                </p>
+                            </div>
+                        }
+
+
+                    }
+
+
+                    <!-- Repeat for other responses -->
+                </div>
+            </div>
+            <div class="card-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+                    <div class="mb-3">
+                        <label for="ticketDescription" class="form-label">توضیحات</label>
+                        <textarea class="form-control" name="content" id="content" rows="4" placeholder="توضیحات تیکت"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ارسال </button>
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+

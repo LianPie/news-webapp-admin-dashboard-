@@ -1,51 +1,104 @@
-﻿@model IEnumerable<WebApplication1.Models.ticket>
+﻿@using newsWebapp.Models
+@model IEnumerable<ticketlist>
+
 
 @{
     ViewBag.Title = "Index";
+
+    Layout = "~/Views/_Layout.cshtml";
+
+    string status = "";
+
 }
 
-<h2>Index</h2>
+<div id="mainContent" class="content container" style="margin-right: 0;">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.priority)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.senderid)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.priority)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.senderid)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    <h2>تیکت ها</h2>
 
-</table>
+    <p>
+        @Html.ActionLink("تیکت جدید", "Create",null, new { @class = "btn btn-info" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                عنوان
+            </th>
+            <th>
+                فرستنده
+            </th>
+            <th>
+                وضعیت
+            </th>
+            <th>
+                اولویت
+            </th>
+            <th>مدیریت</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ticketTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @if (item.status == 1)
+                    {
+                        status = "در انتظار پاسخ";
+                    }
+                    else if (item.status == 3)
+                    {
+                        status = "باز";
+                    }
+                    else if (item.status == 2)
+                    {
+                        status = "پاسخ داده شده";
+                    }
+                    else if (item.status == 4)
+                    {
+                        status = "بسته";
+                    }
+                    @status
+                </td>
+                @if (item.priority == 1)
+                {
+                    status = "ضروری";
+                    <td style="background-color:#ff000049 !important;">
+                        @status
+                    </td>
+                }
+                else if (item.priority == 2)
+                {
+                    status = "مهم";
+                    <td style="background-color:#ff6a003d !important;">
+                        @status
+                    </td>
+                }
+                else if (item.priority == 3)
+                {
+                    status = "عادی";
+                    <td style="background-color:#00ff9040 !important;">
+                        @status
+                    </td>
+                }
+            <td>
+                @if (ViewBag.role > 0)
+                {
+                    @Html.ActionLink("پاسخ", "Respond", new { id = item.ticketID }, new { @class = "btn btn-info" })
+                }
+                else
+                {
+                    @Html.ActionLink("جزئیات", "UserResponse", new { id = item.ticketID }, new { @class = "btn btn-info" })
+                }
+
+            </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

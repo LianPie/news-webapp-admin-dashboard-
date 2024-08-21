@@ -1,55 +1,61 @@
-﻿@model WebApplication1.Models.ticket
+﻿@model newsWebapp.Models.ticket
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout.cshtml";
 }
-
-<h2>Create</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>ticket</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-            </div>
+<div id="mainContent" class="content container" style="margin-right: 0;">
+    <div class="card ticket-card">
+        <div class="card-header">
+            <h5>
+                تیکت جدید
+            </h5>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.content, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select name="priority" class="form-control">
-                    <Option value=1>Urgant</Option>
-                    <Option value=2>Important</Option>
-                    <Option value=3>Notmal</Option>
-                </select>
+            <div class="card-body">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        عنوان
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        فوریت
+                        <div class="col-md-10">
+                            <select name="priority" class="form-control">
+                                <Option value=1 class="list-group-item-danger">ضروری</Option>
+                                <Option value=2 class="list-group-item-warning">مهم</Option>
+                                <Option value=3 class="list-group-item-success">عادی</Option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        متن
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.content, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="ارسال" class="btn btn-success" />
+                @Html.ActionLink("بازگشت", "Index", null, new { @class = "btn btn-info" })
             </div>
 
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

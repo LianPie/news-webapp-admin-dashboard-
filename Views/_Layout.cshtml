@@ -85,7 +85,9 @@
             border-radius: 0.5rem; /* Rounded corners */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Larger shadow */
         }
-
+        .ticket-card {
+            margin-bottom: 1.5rem; /* Space between tickets */
+        }
         .card-header {
             background-color: #0056b3; /* Darker blue background for the header */
             color: #ffffff; /* White text color */
@@ -259,8 +261,8 @@
                     <div id="ticket" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
                         <div class="accordion-body">
 
-                            @Html.ActionLink("تیکت جدید", "send", "Ticket", new { area = "" }, new { @class = "nav-link submenu-item" })
-                            @Html.ActionLink("همه تیکت ها", "inex", "Ticket", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @Html.ActionLink("تیکت جدید", "send", "tickets", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @Html.ActionLink("همه تیکت ها", "Index", "tickets", new { area = "" }, new { @class = "nav-link submenu-item" })
                         </div>
                     </div>
                 </div>
