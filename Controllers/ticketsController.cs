@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1.Models;
 
 namespace newsWebapp.Controllers
 {
@@ -53,7 +52,7 @@ namespace newsWebapp.Controllers
                                   ticketTitle = tickets.title,
                                   priority = tickets.priority,
                                   status = tickets.status
-                              }).OrderByDescending(p => p.priority).Where(s => s.status == 1 || s.status == 3).ToList();
+                              }).OrderByDescending(p => p.priority).ToList();
 
 
                 return View(models);
@@ -101,6 +100,20 @@ namespace newsWebapp.Controllers
             }
             return View(ticket);
         }
+
+        // GET: users/logout
+        public ActionResult Close(int ? id)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentTicket = db.tickets.Find(id);
+                currentTicket.status = 4;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View("Index");
+        }
+
 
         // GET: tickets/Create
         public ActionResult Create()
@@ -150,11 +163,16 @@ namespace newsWebapp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ticket ticket = db.tickets.Find(id);
-            var res = db.responses.Find(ticket.responsid);
-            ViewBag.response = res;
-            var admin = db.users.Find(res.adminid);
+            if (db.responses.Find(ticket.responsid) != null)
+            {
+                var res = db.responses.Find(ticket.responsid); ViewBag.response = res;
+                var admin = db.users.Find(res.adminid);
+                ViewBag.admin = admin != null ? admin.usename : "deleted user";
+            }
+
+
+
             var sender = db.users.Find(ticket.senderid);
-            ViewBag.admin = admin != null ? admin.usename : "deleted user";
             ViewBag.sender = sender != null ? sender.usename : "deleted user";
             string userrole = Convert.ToString(Session["Userrole"]);
             ViewBag.role = userrole.Contains("userManagment") ? 1 : 0;

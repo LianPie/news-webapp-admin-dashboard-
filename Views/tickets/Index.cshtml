@@ -17,7 +17,10 @@
     <h2>تیکت ها</h2>
 
     <p>
-        @Html.ActionLink("تیکت جدید", "Create",null, new { @class = "btn btn-info" })
+        @if (ViewBag.role != 1 )
+        {
+            @Html.ActionLink("تیکت جدید", "Create", null, new { @class = "btn btn-info" })
+        }
     </p>
     <table class="table">
         <tr>
@@ -93,6 +96,9 @@
                 else
                 {
                     @Html.ActionLink("جزئیات", "UserResponse", new { id = item.ticketID }, new { @class = "btn btn-info" })
+                    <span> </span>
+                    @Html.ActionLink("بستن تیکت", "Close", new { id = item.ticketID }, new { @class = "btn btn-danger" })
+
                 }
 
             </td>

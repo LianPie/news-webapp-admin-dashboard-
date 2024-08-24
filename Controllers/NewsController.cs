@@ -9,7 +9,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using WebApplication1.Models;
 using Ganss.Xss;
 
 namespace newsWebapp.Controllers
@@ -51,7 +50,7 @@ namespace newsWebapp.Controllers
             }
             string userrole = Convert.ToString(Session["Userrole"]);
 
-            if (userrole.Contains("tag&catManagment"))
+            if (userrole.Contains("addNews"))
                 ViewBag.role = 1;
             else ViewBag.role = 0;
 
@@ -77,16 +76,44 @@ namespace newsWebapp.Controllers
             return View(models);
         }
         // GET: news
-        public ActionResult Latest()
+        public ActionResult MostViewed()
         {
-            return View(db.news.OrderByDescending(v => v.views).ToList());
+            if (checkLogin(Convert.ToInt32(Session["Userid"])) != 1)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            string userrole = Convert.ToString(Session["Userrole"]);
+
+            if (userrole.Contains("addNews"))
+                ViewBag.role = 1;
+            else ViewBag.role = 0;
+
+            var models = (from news in db.news // Access Users DbSet
+                          join user in db.users on news.userID equals user.ID into newsGroup // Join News DbSet
+                          from user in newsGroup.DefaultIfEmpty() // Left outer join
+                          where news != null // Filter based on existence of news record
+                          select new newsModel
+                          {
+                              DisplayName = user != null ? user.displayname : null,
+                              userID = user != null ? user.ID : 0,
+                              NewsID = news.ID, // Use null-conditional operator for missing news
+                              Title = news.title,
+                              Image = news.image,
+                              category = news.cat,
+                              tag = news.tag,
+                              date = news.publishDate,
+                              views = news.views
+                          }).OrderByDescending(v => v.views).ToList();
+
+
+            return View(models);
         }
 
         // GET: news/Details/5
         public ActionResult Details(int? id)
         {
             string userrole = Convert.ToString(Session["Userrole"]);
-            ViewBag.role = userrole.Contains("tag&catManagment") ? 1 : 0;
+            ViewBag.role = userrole.Contains("addNews") ? 1 : 0;
             
             if (id == null)
             {

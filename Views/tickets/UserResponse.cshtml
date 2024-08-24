@@ -3,7 +3,13 @@
 @{
     Layout = "~/Views/_Layout.cshtml";
     var ticket = Model.content.Split('/');
-    var response = ViewBag.response.content.Split(('/'));
+    var response = Model.content.Split('/');
+
+    if (ViewBag.response != null)
+    {
+        response = ViewBag.response.content.Split(('/'));
+
+    }
 
 
 }
@@ -111,14 +117,27 @@
             <div class="card-footer">
                 @using (Html.BeginForm())
                 {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.ID)
-                    <div class="mb-3">
-                        <label for="ticketDescription" class="form-label">توضیحات</label>
-                        <textarea class="form-control" name="content" id="content" rows="4" placeholder="توضیحات تیکت"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">ارسال </button>
+                    if (Model.status == 2)
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID)
+                        <div class="mb-3">
+                            <label for="ticketDescription" class="form-label">توضیحات</label>
+                            <textarea class="form-control" name="content" id="content" rows="4" placeholder="توضیحات تیکت"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">ارسال </button>
+                        @Html.ActionLink("بستن تیکت", "Close", new { id = Model.ID }, new { @class = "btn btn-danger" })
+                    }
+                    else if (Model.status == 3 || Model.status == 1)
+                    {
+                        <label for="ticketDescription" class="form-label">در انتظار پاسخ</label>
+                    }
+                    else 
+                    {
+                        <label for="ticketDescription" class="form-label">بسته شده</label>
+                    }
+
                 }
             </div>
 

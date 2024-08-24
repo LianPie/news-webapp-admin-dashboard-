@@ -42,6 +42,7 @@ namespace newsWebapp.Controllers
             ViewBag.newsCount = db.news.Count();
             ViewBag.views = db.viewlogs.Where(v => DbFunctions.TruncateTime(v.viewdate) == DateTime.Today).Count();
             return View();
+
         }
 
         [Route("~/Contact")]

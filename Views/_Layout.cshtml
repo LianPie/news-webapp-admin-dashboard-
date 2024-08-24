@@ -11,18 +11,50 @@
     <script src="~/assets/summernote/summernote.min.js"></script>
 
     @RenderSection("head", false)
-    <style>
+<style>
+    @@font-face {
+        font-family: iransens;
+        src: url('../assets/fonts/iransansweb.eot');
+        src: url('../assets/fonts/iransansweb_black.eot');
+        src: url('../assets/fonts/iransansweb_bold.eot');
+        src: url('../assets/fonts/iransansweb_light.eot');
+        src: url('../assets/fonts/iransansweb_medium.eot');
+        src: url('../assets/fonts/iransansweb_ultralight.eot');
+
+        src: url('../assets/fonts/IRANSansWeb.ttf');
+        src: url('../assets/fonts/IRANSansWeb_Black.ttf');
+        src: url('../assets/fonts/IRANSansWeb_Bold.ttf');
+        src: url('../assets/fonts/IRANSansWeb_Light.ttf');
+        src: url('../assets/fonts/IRANSansWeb_Medium.ttf');
+        src: url('../assets/fonts/IRANSansWeb_UltraLight.ttf');
+    }
         /* General Styles */
-        body {
-            background-color: #f8f9fa; /* Light background for the body */
+    body {
+        background-color: #f8f9fa; /* Light background for the body */
+        font-family: iransens;
+    }
+
+    .offcanvas {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Darker shadow */
+        background-color: #007bff; /* Blue background for the offcanvas */
+        color: #ffffff; /* White text color */
+        direction: ltr;
+        font-family: iransens;
+    }
+
+    @@media (float-sm-end) {
+        /* Off-canvas adjustments for smaller screens */
+        .offcanvas {
+            width: 100%; /* Make off-canvas full width on smaller screens */
         }
 
-        .offcanvas {
-            
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Darker shadow */
-            background-color: #007bff; /* Blue background for the offcanvas */
-            color: #ffffff; /* White text color */
+        .content {
+            margin-right: 0; /* Remove margin adjustment for smaller screens */
+            font-family: iransens;
         }
+    }
+
+
 
         .content {
             transition: margin-right .5s ease;
@@ -31,7 +63,7 @@
 
         /* Navbar Styles */
         .navbar {
-            background-color: #007bff; /* Blue background */
+            background-color: #6da5e2; /* Blue background */
             color: #ffffff; /* White text color */
         }
 
@@ -49,6 +81,7 @@
 
         /* Accordion Styles */
         .accordion-button {
+            direction: rtl;
             border: none;
             box-shadow: none;
             color: #ffffff; /* White text color */
@@ -61,6 +94,7 @@
             }
 
         .accordion-item {
+            direction: rtl;
             border: none;
             margin-bottom: 0.5rem;
         }
@@ -144,7 +178,7 @@
                 border: 1px solid #0056b3; /* Darker blue border */
                 text-align: center; /* Centered text */
             }
-            
+
 
             .table td {
                 background-color: #ffffff; /* White background for table cells */
@@ -172,27 +206,59 @@
             .table-bordered td {
                 border-bottom: 1px solid #dee2e6; /* Light gray border for cells */
             }
-    </style>
+    .sidebar {
+        height: 100vh;
+        width: 50px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #007bff;
+        color: #ffffff;
+        padding-top: 5px;
+        z-index: 1000;
+    }
+
+        .sidebar a {
+            color: #ffffff;
+            padding: 15px 20px;
+            display: block;
+            text-decoration: none;
+        }
+
+            .sidebar a:hover {
+                background-color: #495057;
+            }
+
+    .main-content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+</style>
 </head>
 <body>
 
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <button class="btn btn-img" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" title="Toggle Offcanvas">
-                <img src="~/assets/icons/menuburger.png" alt="Toggle Offcanvas" />
-            </button>
-
-            <span class="nav-link">@ViewBag.user</span>
+            <span class="nav-link" dir="rtl">@ViewBag.user</span>
             <span class="navbar-brand mb-0 h1">What's New?</span>
         </div>
     </nav>
+
+    <div class="sidebar">
+        <button class="btn btn-img" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" title="Toggle Offcanvas">
+            <img src="~/assets/icons/menuburger.png" alt="Toggle Offcanvas" />
+        </button>
+    </div>
+
     @RenderBody()
+
 
     <div class="offcanvas offcanvas-start show" tabindex="-1" data-bs-scroll="true" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
+            <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+            </button>
             <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <div class="accordion" id="accordionExample1">
@@ -240,6 +306,7 @@
                         <div class="accordion-body">
                             @Html.ActionLink("پروفایل", "Index", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
                             @Html.ActionLink("ویرایش پروفایل", "EditAccount", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @Html.ActionLink("خروج از حساب", "Logout", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
                             @Html.ActionLink("حذف حساب", "DeleteAccount", "Account", new { area = "" }, new { @class = "nav-link submenu-item" })
                             @if (ViewBag.userrole.Contains("userManagment"))
                             {
@@ -260,8 +327,10 @@
                     </h2>
                     <div id="ticket" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
                         <div class="accordion-body">
-
-                            @Html.ActionLink("تیکت جدید", "send", "tickets", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            @if (!ViewBag.userrole.Contains("userManagment"))
+                            {
+                                @Html.ActionLink("تیکت جدید", "Create", "tickets", new { area = "" }, new { @class = "nav-link submenu-item" })
+                            }
                             @Html.ActionLink("همه تیکت ها", "Index", "tickets", new { area = "" }, new { @class = "nav-link submenu-item" })
                         </div>
                     </div>
@@ -283,18 +352,22 @@
 
             offcanvasElement.addEventListener('show.bs.offcanvas', function () {
                 const offcanvasWidth = offcanvasElement.offsetWidth;
-                mainContent.style.marginRight = `${offcanvasWidth}px`;
-
-                mainContent.style.paddingLeft = `${offcanvasWidth}px`;
+                if (window.innerWidth > 992) {
+                    mainContent.style.marginRight = `${offcanvasWidth}px`;
+                    mainContent.style.width = `calc(90% - ${offcanvasWidth}px)`; // Adjust width to take Offcanvas into account
+                } else {
+                    mainContent.style.marginRight = '0';  // No margin adjustment on small screens
+                    mainContent.style.width = '100%'; // Reset width to full
+                }
             });
 
             offcanvasElement.addEventListener('hide.bs.offcanvas', function () {
-                mainContent.style.marginRight = '0';
-                mainContent.style.paddingLeft = `0`;
-
+                mainContent.style.marginRight = '100px';
+                mainContent.style.width = '100%'; // Reset width to full
             });
         });
     </script>
+
     @RenderSection("script", false)
 </body>
 </html>

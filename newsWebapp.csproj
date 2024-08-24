@@ -154,8 +154,13 @@
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\bootstrap.rtl.css" />
     <Content Include="assets\css\bootstrap.rtl.min.css" />
+    <Content Include="assets\icons\eye.png" />
+    <Content Include="assets\icons\eye.svg" />
+    <Content Include="assets\icons\megaphone.png" />
+    <Content Include="assets\icons\megaphone.svg" />
     <Content Include="assets\icons\menuburger.png" />
     <Content Include="assets\icons\menu-burger.png" />
+    <Content Include="assets\images\pexels-alohaphotostudio-5289880.jpg" />
     <Content Include="assets\js\bootstrap.bundle.js" />
     <Content Include="assets\js\bootstrap.bundle.min.js" />
     <Content Include="assets\js\bootstrap.esm.js" />
@@ -432,6 +437,30 @@
     <Content Include="assets\summernote\summernote-lite.min.js.map" />
     <Content Include="assets\summernote\summernote.js.map" />
     <Content Include="assets\summernote\summernote.min.js.map" />
+    <Content Include="assets\fonts\IRANSansWeb.eot" />
+    <Content Include="assets\fonts\IRANSansWeb_Black.eot" />
+    <Content Include="assets\fonts\IRANSansWeb_Bold.eot" />
+    <Content Include="assets\fonts\IRANSansWeb_Light.eot" />
+    <Content Include="assets\fonts\IRANSansWeb_Medium.eot" />
+    <Content Include="assets\fonts\IRANSansWeb_UltraLight.eot" />
+    <Content Include="assets\fonts\IRANSansWeb.ttf" />
+    <Content Include="assets\fonts\IRANSansWeb_Black.ttf" />
+    <Content Include="assets\fonts\IRANSansWeb_Bold.ttf" />
+    <Content Include="assets\fonts\IRANSansWeb_Light.ttf" />
+    <Content Include="assets\fonts\IRANSansWeb_Medium.ttf" />
+    <Content Include="assets\fonts\IRANSansWeb_UltraLight.ttf" />
+    <Content Include="assets\fonts\IRANSansWeb.woff" />
+    <Content Include="assets\fonts\IRANSansWeb_Black.woff" />
+    <Content Include="assets\fonts\IRANSansWeb_Bold.woff" />
+    <Content Include="assets\fonts\IRANSansWeb_Light.woff" />
+    <Content Include="assets\fonts\IRANSansWeb_Medium.woff" />
+    <Content Include="assets\fonts\IRANSansWeb_UltraLight.woff" />
+    <Content Include="assets\fonts\IRANSansWeb.woff2" />
+    <Content Include="assets\fonts\IRANSansWeb_Black.woff2" />
+    <Content Include="assets\fonts\IRANSansWeb_Bold.woff2" />
+    <Content Include="assets\fonts\IRANSansWeb_Light.woff2" />
+    <Content Include="assets\fonts\IRANSansWeb_Medium.woff2" />
+    <Content Include="assets\fonts\IRANSansWeb_UltraLight.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_Layout.cshtml" />
@@ -461,6 +490,7 @@
     <Content Include="Views\categories\Edit.cshtml" />
     <Content Include="Views\categories\Index.cshtml" />
     <Content Include="Views\tickets\Respond.cshtml" />
+    <Content Include="Views\News\MostViewed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

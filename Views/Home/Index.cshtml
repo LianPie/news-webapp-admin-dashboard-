@@ -8,6 +8,7 @@
 
 <div id="mainContent" class="content container" style="margin-right: 0;">
     <h1>خوش آمدید</h1>
+    <br />
     <h3>داشبورد</h3>
     <div class="border-top my-3"></div>
 
@@ -16,26 +17,35 @@
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">تعداد اخبار</h5>
+                    <h5 class="card-title">
+                        <img src="~/assets/icons/megaphone.png" class="img-fluid" height="20" width="20" />
+                        تعداد اخبار
+                    </h5>
                     <p class="card-text">
                         @ViewBag.newsCount
                     </p>
-                    <a href="#" class="btn btn-primary">view all</a>
+                    @Html.ActionLink("پر بازدید", "Index", "news", null, new { @class = "btn btn-info" })
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">تعداد بازدید</h5>
+                    <h5 class="card-title">
+                        <img src="~/assets/icons/eye.png" class="img-fluid" height="20" width="20" />
+                        تعداد    بازدید
+                    </h5>
                     <p class="card-text">
                         @ViewBag.views
                     </p>
-                    <a href="#" class="btn btn-primary">analytics</a>
+                    @Html.ActionLink("پر بازدید", "MostViewed", "news", null, new { @class = "btn btn-info" })
+
                 </div>
             </div>
         </div>
     </div>
+
+
 
 </div>
 
