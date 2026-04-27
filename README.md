@@ -17,9 +17,10 @@ A news web application built with ASP.NET MVC.
 ## How to Run
 1. Clone the repo
 2. Open in Visual Studio
-3. Update connection string in `Web.config`
-4. Run the SQL script in `/Database` folder to create the database
-5. Press F5 to run
+3. Create a database named `newswebapp` in SQL Server
+4. Run the SQL script in `/Database` folder
+5. Update connection string in `Web.config`
+6. Press F5 to run
 
 ## What I Learned
 - MVC architecture
