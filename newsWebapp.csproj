@@ -318,6 +318,7 @@
     <Content Include="assets\summernote\summernote.min.css" />
     <Content Include="assets\summernote\summernote.min.js" />
     <Content Include="assets\summernote\summernote.min.js.LICENSE.txt" />
+    <Content Include="Database\newswebapp.sql" />
     <Content Include="Global.asax" />
     <Content Include="Media\news\32wiF8mzgi.jpg" />
     <Content Include="Media\news\5RCYg4F954.jpg" />
